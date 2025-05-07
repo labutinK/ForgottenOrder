@@ -46,10 +46,11 @@ class OrderEventHandler
             );
 
             if ($fuserExist && (count($fuserExist) > 0)) {
+                $date = new \Bitrix\Main\Type\DateTime();
                 $forgottenOrderApi->update(
                     $fuserExist[0]['ID'],
                     array(
-                        'UF_DATE' => new \Bitrix\Main\Type\DateTime(strval(new \Bitrix\Main\Type\DateTime()), "d.m.Y H:i:s"),
+                        'UF_DATE' => $date->format('d.m.Y H:i:s'),
                         'UF_ORDER_FORGOTTEN' => $forgottenOrderStatus,
                         'UF_LETTER_SENT' => false,
                     )
